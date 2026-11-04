@@ -67,7 +67,7 @@ def save_form(prefix: str, row: dict | None = None) -> dict | None:
     with c4:
         transaction_date = st.date_input("Data *", value=default_date, format="DD/MM/YYYY", key=f"{prefix}_date")
     note = st.text_area("Observação", value=row.get("observacao", "") if row else "", max_chars=1000, key=f"{prefix}_note")
-    if st.form_submit_button("Salvar transação", type="primary", use_container_width=True):
+    if st.form_submit_button("Salvar transação", type="primary", width="stretch"):
         try:
             return validate_transaction(description, kind, category, value, transaction_date, note)
         except ValueError as exc:
@@ -84,7 +84,7 @@ def show_dashboard(db):
     st.subheader("Transações recentes")
     recent = list_transactions(db, limit=8)
     if recent:
-        st.dataframe(display_rows(recent), hide_index=True, use_container_width=True)
+        st.dataframe(display_rows(recent), hide_index=True, width="stretch")
     else:
         st.info("Nenhuma transação cadastrada. Comece pela aba Transações.")
 
@@ -120,7 +120,7 @@ def show_filters() -> tuple[dict, bool]:
         description = st.text_input("Buscar na descrição", key="filter_description")
         order = st.selectbox("Ordenar por data", ["Mais recentes", "Mais antigas"], key="filter_order")
         st.write("")
-        st.button("Limpar filtros", use_container_width=True, on_click=clear_filters)
+        st.button("Limpar filtros", width="stretch", on_click=clear_filters)
     filters = {
         "kind": None if kind == "Todos" else kind,
         "category": None if category == "Todas" else category,
@@ -152,7 +152,7 @@ def show_transactions(db):
         if not rows:
             st.info("Nenhuma transação encontrada para estes filtros.")
             return
-        st.dataframe(display_rows(rows), hide_index=True, use_container_width=True)
+        st.dataframe(display_rows(rows), hide_index=True, width="stretch")
         options = transaction_options(rows)
         selected = options[st.selectbox("Selecione para ver detalhes, editar ou excluir", list(options))]
         with st.expander("Detalhes", expanded=True):

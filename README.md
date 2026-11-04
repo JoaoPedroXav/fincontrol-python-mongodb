@@ -25,6 +25,7 @@ requirements.txt          Dependências Python
 .env                      Configuração local (ignorada pelo Git)
 tests/test_database.py    Testes de validação e construção de consultas
 tests/test_atlas_integration.py  Testes reais no Atlas, com limpeza dos dados de teste
+tests/test_streamlit_ui.py       Teste do cadastro pela interface com persistência real
 ```
 
 ## Configurar MongoDB Atlas
@@ -68,4 +69,4 @@ Em `database.py`, `create_transaction()` chama `insert_one()`, `list_transaction
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Com `MONGODB_URI` configurada, os testes de integração executam `ping`, CRUD, consultas por categoria, tipo, data, valor, filtros simultâneos e indicadores no Atlas. Os registros de teste recebem um marcador único na observação e somente eles são removidos ao final. Sem URI, os testes de integração são ignorados e **não** comprovam conexão com o Atlas.
+Com `MONGODB_URI` configurada, os testes de integração executam `ping`, CRUD, consultas por categoria, tipo, data, valor, filtros simultâneos e indicadores no Atlas. Há também um teste que cadastra pelo formulário Streamlit e verifica a persistência no Atlas. Os registros de teste recebem um marcador único na observação e somente eles são removidos ao final. Sem URI, os testes de integração são ignorados e **não** comprovam conexão com o Atlas.
