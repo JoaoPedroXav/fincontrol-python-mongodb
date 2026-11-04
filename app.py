@@ -15,12 +15,16 @@ from database import (
 st.set_page_config(page_title="FinControl", page_icon="💸", layout="wide")
 st.markdown("""
 <style>
-  .stApp { background: #f7f8fb; color: #17223b; }
+  .stApp { background: #f7f8fb; }
+  [data-testid="stHeader"] { background: #f7f8fb; }
   .block-container { max-width: 1180px; padding-top: 2rem; }
   h1, h2, h3 { color: #17223b; letter-spacing: -.025em; }
   div[data-testid="stMetric"] { background: white; padding: 1.3rem 1.5rem;
     border: 1px solid #e7ebf2; border-radius: 16px; box-shadow: 0 4px 18px #1d2b4c08; }
-  div[data-testid="stMetricValue"] { font-weight: 700; }
+  div[data-testid="stMetricLabel"] { color: #65708a !important; }
+  div[data-testid="stMetricValue"] { color: #17223b !important; font-weight: 700; }
+  button[role="tab"] { color: #52617a !important; }
+  button[role="tab"][aria-selected="true"] { color: #0f766e !important; }
   .subtle { color: #65708a; margin-top: -.6rem; }
   .section { margin-top: 1.2rem; }
 </style>
